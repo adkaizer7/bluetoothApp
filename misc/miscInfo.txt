@@ -1,0 +1,13 @@
+Application Name : BluetoothSampleApp
+Project Name : BluetoothSampleApp
+Package name : edu.berkeley.sampleapps.bluetoothsampleapp
+
+Activity Name : BluetoothSampleApp_main_activity
+Layout Name : MainActivityBluetoothSampleApp
+
+activity_main_bluetooth_sample_app
+main_activity_bluetooth_sample_app
+
+Activity Name : ListPairedDevices
+Layout name : activity_list_paired_devices
+Title : ListPairedDevices
