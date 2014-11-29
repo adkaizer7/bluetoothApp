@@ -12,7 +12,7 @@
         android:textColor="#fff"
         android:paddingLeft="5dp"
     />
-    <ListView android:id="@+id/listViewUnPairedBTdevices"
+    <ListView android:id="@+id/listViewUnpairedBTdevices"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:stackFromBottom="true"

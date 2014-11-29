@@ -1115,7 +1115,7 @@ containing a value of this type.
         public static final int image=0x7f070027;
         public static final int listMode=0x7f070001;
         public static final int listViewPairedBTdevices=0x7f07003c;
-        public static final int listViewUnPairedBTdevices=0x7f07003e;
+        public static final int listViewUnpairedBTdevices=0x7f07003e;
         public static final int list_item=0x7f070028;
         public static final int middle=0x7f070012;
         public static final int never=0x7f070009;
@@ -1255,14 +1255,15 @@ containing a value of this type.
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f05000e;
         public static final int noPairedDevices=0x7f050014;
+        public static final int noUnpairedDevices=0x7f050015;
         public static final int stringEnlistPairedDevices=0x7f050011;
-        public static final int stringMakeDiscoverable=0x7f050016;
-        public static final int stringStartScan=0x7f050015;
+        public static final int stringMakeDiscoverable=0x7f050017;
+        public static final int stringStartScan=0x7f050016;
         public static final int stringTitlePairedDevices=0x7f050013;
-        public static final int stringTitleUnpairedDevices=0x7f050018;
+        public static final int stringTitleUnpairedDevices=0x7f050019;
         public static final int stringTurnOnBT=0x7f050010;
         public static final int title_activity_list_paired_devices=0x7f050012;
-        public static final int title_activity_list_unpaired_devices=0x7f050017;
+        public static final int title_activity_list_unpaired_devices=0x7f050018;
     }
     public static final class style {
         /** 

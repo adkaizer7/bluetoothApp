@@ -1,6 +1,5 @@
 package edu.berkeley.sampleapps.bluetoothsampleapp;
 
-import edu.berkeley.monitoring.util.bluetooth.PairedBTDevices;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,13 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import edu.berkeley.monitoring.util.bluetooth.UnpairedBTDevices;
 
 public class ListUnpairedDevices extends Activity {
 
 	private ArrayAdapter<String> mUnpairedDevicesArrayAdapter;
 	
     private static final boolean D = true;
-    private static final String TAG = "ListPairedDevices";
+    private static final String TAG = "ListUnpairedDevices";
 
 
 	@Override
@@ -30,17 +30,19 @@ public class ListUnpairedDevices extends Activity {
         // Initialize array adapters. One for already paired devices and
         // one for newly discovered devices
         mUnpairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
-        ListView pairedListView = (ListView) findViewById(R.id.listViewPairedBTdevices);
-        pairedListView.setAdapter(mUnpairedDevicesArrayAdapter);
+        ListView unpairedListView = (ListView) findViewById(R.id.listViewUnpairedBTdevices);
+        unpairedListView.setAdapter(mUnpairedDevicesArrayAdapter);
         // Get a set of currently paired devices
         // If there are paired devices, add each one to the ArrayAdapter
-        if (MainActivityBluetoothSampleApp.listPairedDevices.size() > 0) {
+        if (MainActivityBluetoothSampleApp.listUnpairedDevices.size() > 0) {
             //findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
-            for (PairedBTDevices device : MainActivityBluetoothSampleApp.listPairedDevices) {
+            for (UnpairedBTDevices device : MainActivityBluetoothSampleApp.listUnpairedDevices) {
                 mUnpairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
             }
         } else {
-            String noDevices = getResources().getText(R.string.noPairedDevices).toString();
+        	if (D)
+        		Log.e(TAG,"No Unpaired Devices");
+            String noDevices = getResources().getText(R.string.noUnpairedDevices).toString();
             mUnpairedDevicesArrayAdapter.add(noDevices);
         }
         

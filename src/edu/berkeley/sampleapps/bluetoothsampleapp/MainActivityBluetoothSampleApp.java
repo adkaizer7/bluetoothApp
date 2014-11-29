@@ -158,18 +158,21 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
 
 	@Override
 	public void onFinishedScanning() {
-		// TODO Auto-generated method stub
+		if (D)
+			Log.e(TAG,"Callback from library");
+        Intent serverIntent = new Intent(thisActivity, ListUnpairedDevices.class);
+        this.startActivity(serverIntent);     		
+
 		
 	}
 
 	@Override
-	public void onObtainedOneUnpairedDevices(String nameAndAddress) {
-		// TODO Auto-generated method stub
-		
+	public void onObtainedOneUnpairedDevices(UnpairedBTDevices pUnpairedBTDevice) {
+		listUnpairedDevices.add(pUnpairedBTDevice);		
 	}
 
 	@Override
-	public void onFinishedObtainingPairedDevices(ArrayList<PairedBTDevices> pairedDevices) {
+	public void onFinishedObtainingPairedDevices() {
         if (D)
         	Log.e(TAG,"onFinishedObtainingPairedDevices");
         Intent serverIntent = new Intent(thisActivity, ListPairedDevices.class);
@@ -178,8 +181,7 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
 	}
 
 	@Override
-	public void onFinishObtainingUnpairedDevices(
-			ArrayList<UnpairedBTDevices> unpairedDeviceAddress) {
+	public void onFinishObtainingUnpairedDevices() {
 		// TODO Auto-generated method stub
 		
 	}
