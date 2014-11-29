@@ -34,6 +34,10 @@
             android:name=".ListPairedDevices"
             android:label="@string/title_activity_list_paired_devices" >
         </activity>
+        <activity
+            android:name=".ListUnpairedDevices"
+            android:label="@string/title_activity_list_unpaired_devices" >
+        </activity>
     </application>
 
 </manifest>

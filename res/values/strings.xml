@@ -9,5 +9,9 @@
     <string name="title_activity_list_paired_devices">ListPairedDevices</string>
     <string name="stringTitlePairedDevices">Paired Devices</string>
     <string name="noPairedDevices">No Devices currently paired</string>
+    <string name="stringStartScan">Begin Scan</string>
+    <string name="stringMakeDiscoverable">Make Discoverable</string>
+    <string name="title_activity_list_unpaired_devices">ListUnpairedDevices</string>
+    <string name="stringTitleUnpairedDevices">Unpaired Devices</string>
 
 </resources>

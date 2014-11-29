@@ -28,4 +28,21 @@
         android:layout_marginTop="33dp"
         android:text="@string/stringEnlistPairedDevices" />
 
+    <Button
+        android:id="@+id/buttonStartScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonTurnOnBT"
+        android:layout_centerVertical="true"
+        android:text="@string/stringStartScan" />
+
+    <Button
+        android:id="@+id/buttonMakeDiscoverable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonStartScan"
+        android:layout_alignBottom="@+id/buttonStartScan"
+        android:layout_toRightOf="@+id/buttonTurnOnBT"
+        android:text="@string/stringMakeDiscoverable" />
+
 </RelativeLayout>

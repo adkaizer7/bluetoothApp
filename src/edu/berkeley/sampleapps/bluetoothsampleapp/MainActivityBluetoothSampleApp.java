@@ -22,11 +22,14 @@ import edu.berkeley.monitoring.util.bluetooth.UnpairedBTDevices;
 public class MainActivityBluetoothSampleApp extends Activity implements BluetoothInterface{
     private static final boolean D = true;
     private static final String TAG = "BluetoothChat";
-    public static BluetoothService bluetoothSerivceHandler;
-    private Button mTurnOnBluetooth;    
+    public static BluetoothService bluetoothServiceHandler;
+    private Button mTurnOnBluetooth;
+    private Button mStartScan;
+    private Button mMakeDiscoverable;
     private Button mEnlistPairedDevices;
     private Activity thisActivity = this;
     public static ArrayList<PairedBTDevices> listPairedDevices;
+    public static ArrayList<UnpairedBTDevices> listUnpairedDevices;
     public static final String TOAST = "toast";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,7 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
         if(D) Log.e(TAG, "++ ON START ++");
         try{
 
-        	bluetoothSerivceHandler = new BluetoothService(this, msgHandler, this);
+        	bluetoothServiceHandler = new BluetoothService(this, msgHandler, this);
         }
         catch(BluetoothExceptions e){
         	//TODO
@@ -62,6 +65,10 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
 
     private void setupChat() {
         Log.d(TAG, "setupChat()");
+        
+        listPairedDevices = new ArrayList<PairedBTDevices>();
+        listUnpairedDevices = new ArrayList<UnpairedBTDevices>();
+        
         // Initialize the array adapter for the conversation thread
         //mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
         //mConversationView = (ListView) findViewById(R.id.in);
@@ -73,27 +80,31 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
         mTurnOnBluetooth = (Button) findViewById(R.id.buttonTurnOnBT);
         mTurnOnBluetooth.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-            	bluetoothSerivceHandler.switchOnBluetooth();
+            	bluetoothServiceHandler.switchOnBluetooth();
             }
         });
         
-        listPairedDevices = new ArrayList<PairedBTDevices>();
+        mStartScan = (Button) findViewById(R.id.buttonStartScan);
+        mStartScan.setOnClickListener(new OnClickListener(){
+        	public void onClick(View v){
+        		bluetoothServiceHandler.startScan();
+        	}
+        	
+        });
+        
+        mMakeDiscoverable = (Button) findViewById(R.id.buttonMakeDiscoverable);
+        mMakeDiscoverable.setOnClickListener(new OnClickListener(){
+        	public void onClick(View v){
+        		bluetoothServiceHandler.ensureDiscoverable();
+        	}
+        	
+        });
+        
         
         mEnlistPairedDevices = (Button) findViewById(R.id.buttonEnlistPairedDevices);
         mEnlistPairedDevices.setOnClickListener(new OnClickListener(){
         	public void onClick(View v){
-
-        		//Bundle bundle = new Bundle();
-         		//String hello = "hello";         		
-        		//bundle.putSerializable("LIST_PAIRED_DEVICES", hello);
-        		
-        		
-        		//bundle.putSerializable("LIST_PAIRED_DEVICES", listPairedDevices);
-        		
-        		// Launch the DeviceListActivity to see devices and do scan
-                Intent serverIntent = new Intent(thisActivity, ListPairedDevices.class);
-                //serverIntent.putExtras(bundle);
-                v.getContext().startActivity(serverIntent);        		
+        		bluetoothServiceHandler.getPairedDevices(listPairedDevices);
         	}
         	
         });
@@ -159,7 +170,10 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
 
 	@Override
 	public void onFinishedObtainingPairedDevices(ArrayList<PairedBTDevices> pairedDevices) {
-		// TODO Auto-generated method stub
+        if (D)
+        	Log.e(TAG,"onFinishedObtainingPairedDevices");
+        Intent serverIntent = new Intent(thisActivity, ListPairedDevices.class);
+        this.startActivity(serverIntent);      		
 		
 	}
 

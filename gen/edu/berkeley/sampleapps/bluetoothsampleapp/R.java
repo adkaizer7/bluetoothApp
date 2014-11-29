@@ -1091,12 +1091,14 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f070016;
         public static final int action_menu_presenter=0x7f070017;
         public static final int action_mode_close_button=0x7f070024;
-        public static final int action_settings=0x7f07003f;
+        public static final int action_settings=0x7f070043;
         public static final int activity_chooser_view_content=0x7f070025;
         public static final int always=0x7f07000b;
         public static final int beginning=0x7f070011;
-        public static final int buttonEnlistPairedDevices=0x7f07003e;
-        public static final int buttonTurnOnBT=0x7f07003d;
+        public static final int buttonEnlistPairedDevices=0x7f070040;
+        public static final int buttonMakeDiscoverable=0x7f070042;
+        public static final int buttonStartScan=0x7f070041;
+        public static final int buttonTurnOnBT=0x7f07003f;
         public static final int checkbox=0x7f07002c;
         public static final int collapseActionView=0x7f07000d;
         public static final int dialog=0x7f07000e;
@@ -1113,6 +1115,7 @@ containing a value of this type.
         public static final int image=0x7f070027;
         public static final int listMode=0x7f070001;
         public static final int listViewPairedBTdevices=0x7f07003c;
+        public static final int listViewUnPairedBTdevices=0x7f07003e;
         public static final int list_item=0x7f070028;
         public static final int middle=0x7f070012;
         public static final int never=0x7f070009;
@@ -1140,6 +1143,7 @@ containing a value of this type.
         public static final int tabMode=0x7f070002;
         public static final int title=0x7f07002a;
         public static final int title_paired_devices=0x7f07003b;
+        public static final int title_unpaired_devices=0x7f07003d;
         public static final int top_action_bar=0x7f070020;
         public static final int up=0x7f070021;
         public static final int useLogo=0x7f070003;
@@ -1196,13 +1200,15 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_list_paired_devices=0x7f030018;
-        public static final int activity_main_bluetooth_sample_app=0x7f030019;
-        public static final int device_name=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int activity_list_unpaired_devices=0x7f030019;
+        public static final int activity_main_bluetooth_sample_app=0x7f03001a;
+        public static final int device_name=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
         public static final int list_paired_devices=0x7f0c0000;
-        public static final int main_activity_bluetooth_sample_app=0x7f0c0001;
+        public static final int list_unpaired_devices=0x7f0c0001;
+        public static final int main_activity_bluetooth_sample_app=0x7f0c0002;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1250,9 +1256,13 @@ containing a value of this type.
         public static final int hello_world=0x7f05000e;
         public static final int noPairedDevices=0x7f050014;
         public static final int stringEnlistPairedDevices=0x7f050011;
+        public static final int stringMakeDiscoverable=0x7f050016;
+        public static final int stringStartScan=0x7f050015;
         public static final int stringTitlePairedDevices=0x7f050013;
+        public static final int stringTitleUnpairedDevices=0x7f050018;
         public static final int stringTurnOnBT=0x7f050010;
         public static final int title_activity_list_paired_devices=0x7f050012;
+        public static final int title_activity_list_unpaired_devices=0x7f050017;
     }
     public static final class style {
         /** 
