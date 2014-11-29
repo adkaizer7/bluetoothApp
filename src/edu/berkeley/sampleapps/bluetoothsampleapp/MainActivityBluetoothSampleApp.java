@@ -22,10 +22,11 @@ import edu.berkeley.monitoring.util.bluetooth.UnpairedBTDevices;
 public class MainActivityBluetoothSampleApp extends Activity implements BluetoothInterface{
     private static final boolean D = true;
     private static final String TAG = "BluetoothChat";
-    private BluetoothService bluetoothSerivceHandler;
+    public static BluetoothService bluetoothSerivceHandler;
     private Button mTurnOnBluetooth;    
     private Button mEnlistPairedDevices;
     private Activity thisActivity = this;
+    public static ArrayList<PairedBTDevices> listPairedDevices;
     public static final String TOAST = "toast";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,17 +76,24 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
             	bluetoothSerivceHandler.switchOnBluetooth();
             }
         });
+        
+        listPairedDevices = new ArrayList<PairedBTDevices>();
+        
         mEnlistPairedDevices = (Button) findViewById(R.id.buttonEnlistPairedDevices);
         mEnlistPairedDevices.setOnClickListener(new OnClickListener(){
         	public void onClick(View v){
-        		//ArrayList<PairedBTDevices> pairedBTDevices = new ArrayList<PairedBTDevices>();
-        		//bluetoothSerivceHandler.getPairedDevices(pairedBTDevices);
 
+        		//Bundle bundle = new Bundle();
+         		//String hello = "hello";         		
+        		//bundle.putSerializable("LIST_PAIRED_DEVICES", hello);
+        		
+        		
+        		//bundle.putSerializable("LIST_PAIRED_DEVICES", listPairedDevices);
+        		
         		// Launch the DeviceListActivity to see devices and do scan
                 Intent serverIntent = new Intent(thisActivity, ListPairedDevices.class);
-                v.getContext().startActivity(serverIntent);
-
-        		
+                //serverIntent.putExtras(bundle);
+                v.getContext().startActivity(serverIntent);        		
         	}
         	
         });
