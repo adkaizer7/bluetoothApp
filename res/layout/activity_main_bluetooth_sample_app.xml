@@ -24,25 +24,24 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/buttonTurnOnBT"
         android:layout_below="@+id/buttonTurnOnBT"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="14dp"
         android:text="@string/stringEnlistPairedDevices" />
 
     <Button
         android:id="@+id/buttonStartScan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonTurnOnBT"
-        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/buttonEnlistPairedDevices"
+        android:layout_below="@+id/buttonEnlistPairedDevices"
+        android:layout_marginTop="14dp"
         android:text="@string/stringStartScan" />
 
     <Button
         android:id="@+id/buttonMakeDiscoverable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonStartScan"
-        android:layout_alignBottom="@+id/buttonStartScan"
-        android:layout_toRightOf="@+id/buttonTurnOnBT"
+        android:layout_alignLeft="@+id/buttonStartScan"
+        android:layout_centerVertical="true"
         android:text="@string/stringMakeDiscoverable" />
 
 </RelativeLayout>

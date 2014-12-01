@@ -2,6 +2,7 @@ package edu.berkeley.sampleapps.bluetoothsampleapp;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +32,7 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
     public static ArrayList<PairedBTDevices> listPairedDevices;
     public static ArrayList<UnpairedBTDevices> listUnpairedDevices;
     public static final String TOAST = "toast";
+    private static final int REQUEST_PAIR_DEVICE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,7 +163,7 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
 		if (D)
 			Log.e(TAG,"Callback from library");
         Intent serverIntent = new Intent(thisActivity, ListUnpairedDevices.class);
-        this.startActivity(serverIntent);     		
+        this.startActivityForResult(serverIntent, REQUEST_PAIR_DEVICE);     		
 
 		
 	}
@@ -238,5 +240,44 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
 		// TODO Auto-generated method stub
 		
 	}
+	
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(D) Log.d(TAG, "onActivityResult " + resultCode);
+        switch (requestCode) {
+        case REQUEST_PAIR_DEVICE:
+            // When ListUnpairedDevices returns with a device to connect
+            if (resultCode == Activity.RESULT_OK) {
+                // Get the device address
+                int address = data.getExtras()
+                                     .getInt(ListUnpairedDevices.UNPAIRED_DEVICE_INDEX);
+                // Get the BLuetoothDevice object
+                UnpairedBTDevices device = listUnpairedDevices.get(address);
+                // Attempt to connect to the device
+                bluetoothServiceHandler.pairToDevice(device);
+            }
+            break;
+//        case REQUEST_ENABLE_BT:
+//            // When the request to enable Bluetooth returns
+//            if (resultCode == Activity.RESULT_OK) {
+//                // Bluetooth is now enabled, so set up a chat session
+//                setupChat();
+//            } else {
+//                // User did not enable Bluetooth or an error occured
+//                Log.d(TAG, "BT not enabled");
+//                Toast.makeText(this, R.string.bt_not_enabled_leaving, Toast.LENGTH_SHORT).show();
+//                finish();
+//            }
+//            break;
+//        case PICKFILE_RESULT_CODE:
+//        	   if(resultCode== Activity.RESULT_OK){
+//        	    String FilePath = data.getData().getPath();
+//            	if (D)
+//            		Log.e(TAG, "Printing File Path");
+//        	    mTextFile.setText(FilePath);
+//        	    sendFile(FilePath);
+//        	   }
+//        	   break;
+        }
+    }
 }
 
