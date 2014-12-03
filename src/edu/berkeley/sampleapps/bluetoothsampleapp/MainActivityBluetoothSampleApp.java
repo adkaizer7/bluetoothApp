@@ -2,7 +2,6 @@ package edu.berkeley.sampleapps.bluetoothsampleapp;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 import edu.berkeley.monitoring.util.bluetooth.BluetoothExceptions;
 import edu.berkeley.monitoring.util.bluetooth.BluetoothInterface;
 import edu.berkeley.monitoring.util.bluetooth.BluetoothService;
+import edu.berkeley.monitoring.util.bluetooth.MessageFlags;
 import edu.berkeley.monitoring.util.bluetooth.PairedBTDevices;
 import edu.berkeley.monitoring.util.bluetooth.UnpairedBTDevices;
 
@@ -192,7 +192,8 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
     private final Handler msgHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what) {
+        	MessageFlags msgFlags = MessageFlags.values()[msg.what];
+            switch (msgFlags) {
 /**            case BluetoothService.MESSAGE_STATE_CHANGE:
                 if(D) Log.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
                 switch (msg.arg1) {
@@ -228,10 +229,12 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
                 Toast.makeText(getApplicationContext(), "Connected to "
                                + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
                 break;*/
-            case BluetoothService.MESSAGE_TOAST:
+            case MESSAGE_TOAST:
                 Toast.makeText(getApplicationContext(), msg.getData().getString(TOAST),
                                Toast.LENGTH_SHORT).show();
                 break;
+			default:
+				break;
             }
         }
     };
@@ -253,7 +256,7 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
                 // Get the BLuetoothDevice object
                 UnpairedBTDevices device = listUnpairedDevices.get(address);
                 // Attempt to connect to the device
-                bluetoothServiceHandler.pairToDevice(device);
+                PairedBTDevices pairedBTDevice = device.pairToDevice(device);
             }
             break;
 //        case REQUEST_ENABLE_BT:
@@ -279,5 +282,11 @@ public class MainActivityBluetoothSampleApp extends Activity implements Bluetoot
 //        	   break;
         }
     }
+	@Override
+	public void onObtainedOnePairedDevices(
+			PairedBTDevices pairedBTDevice) {
+		// TODO Auto-generated method stub
+		listPairedDevices.add(pairedBTDevice);		
+	}
 }
 
